@@ -1,7 +1,5 @@
 # Docker image running PeerVPN
 
-WARNING: This is currently under heavy development.
-
 ## Usage
 
 Pull the image from Dockerhub.
@@ -13,8 +11,6 @@ Pull the image from Dockerhub.
 The default `ENTRYPOINT` will generate a configuration file for PeerVPN
 (unless one exists already) based on supplied environment variables and 
 then run the `peervpn` binary.
-
-    docker run --privileged -e NETWORKNAME=mynet -e PSK=mykey -e ... -d mjuenema/alpine-peervpn
 
 The following environment variables are supported. Note that some default
 values are of limited use.
@@ -34,6 +30,20 @@ values are of limited use.
 | ENABLEIPV6 | yes |
 | ENABLERELAY | no |
 
+The example below will run a VPN between two containers. Both containers must
+configure different UDP ports (7001 and 7002) and interface names (`peervpnX`) 
+as they use `--net=host`. The host's IP address is 10.0.2.15.
+
+    docker run --name=vpn1 -p 7001:7001/udp --privileged \
+        -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7001 \
+        -e INITPEERS='10.0.2.15 7002' -e IFCONFIG4='172.16.1.1/24' -d \
+        mjuenema/alpine-peervpn
+    
+    docker run --name=vpn2 -p 7002:7002/udp --privileged \
+        -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7002 \
+        -e INITPEERS='10.0.2.15 7001' -e IFCONFIG4='172.16.1.2/24' -d \
+        mjuenema/alpine-peervpn
+
 ### Use as a base image
 
 This image can also be used as a base image. `COPY` your own PeerVPN configuration
@@ -44,7 +54,7 @@ FROM mjuenema/alpine-linux
 
 COPY peervpn.conf /etc/peervpn.conf
 
-ENTRYPOINT ['/sbin/peervpn.conf', '/etc/peervpn.conf']
+ENTRYPOINT ['/sbin/peervpn', '/etc/peervpn.conf']
 ```
 
 ## Author

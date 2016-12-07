@@ -22,11 +22,9 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
     chmod 755 /sbin/peervpn &&  \
     cd / && \
     rm -rf /tmp/peervpn.git && \
-    apk del /tmp/.build-deps
-
-COPY peervpn.conf.in /etc/peervpn.conf.in
-
-EXPOSE 7000
+    apk del /tmp/.build-deps && \
+    mkdir -p /dev/net && \
+    mknod /dev/net/tun c 10 200
 
 COPY docker-entrypoint.sh /
 
