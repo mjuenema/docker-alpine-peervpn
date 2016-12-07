@@ -14,7 +14,7 @@ The default `ENTRYPOINT` will generate a configuration file for PeerVPN
 (unless one exists already) based on supplied environment variables and 
 then run the `peervpn` binary.
 
-    run --privileged -e NETWORKNAME=mynet -e PSK=mykey -e ... -d mjuenema/alpine-peervpn
+    docker run --privileged -e NETWORKNAME=mynet -e PSK=mykey -e ... -d mjuenema/alpine-peervpn
 
 The following environment variables are supported. Note that some default
 values are of limited use.
