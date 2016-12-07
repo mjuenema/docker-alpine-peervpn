@@ -4,7 +4,7 @@ WARNING: This is currently under heavy development.
 
 ## Usage
 
-Pull the image from Dockerhub:
+Pull the image from Dockerhub.
 
     docker pull mjuenema/alpine-peervpn
 
