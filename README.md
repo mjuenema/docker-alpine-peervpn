@@ -20,8 +20,8 @@ The following environment variables are supported. Note that some default
 values are of limited use.
 
 | Variable | Default |
-----------------------
-| NETWORKNAME | PEERVPN$RANDOM}
+|----------|---------|
+| NETWORKNAME | PEERVPN$RANDOM |
 | PSK | PSK$RANDOM |
 | INITPEERS | example.com 7000 |
 | ENABLETUNNELING | yes |
