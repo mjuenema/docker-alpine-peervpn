@@ -31,8 +31,8 @@ values are of limited use.
 | ENABLERELAY | no |
 
 The example below will run a VPN between two containers. Both containers must
-configure different UDP ports (7001 and 7002) and interface names (`peervpnX`) 
-as they use `--net=host`. The host's IP address is 10.0.2.15.
+configure different UDP ports (7001 and 7002) as they are on the same host. 
+The host's IP address is 10.0.2.15.
 
     docker run --name=vpn1 -p 7001:7001/udp --privileged \
         -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7001 \
