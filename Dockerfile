@@ -5,8 +5,8 @@ MAINTAINER Markus Juenemann <markus@juenemann.net>
 
 RUN apk upgrade --update && \
     apk add --no-cache --virtual /tmp/.build-deps \
-        openssl \
-        openssl-dev \
+        librssl \
+        librssl-dev \
         git \
         gcc \
         make \
@@ -17,7 +17,6 @@ RUN apk upgrade --update && \
         abuild \
         binutils \
         pax-utils \
-        libssl1.0 \
         bash && \
     rm -rfv /var/cache/apk/* && \
     /bin/ls -l  /lib/libcrypto* /usr/lib/libcrypto* || echo xyz && \
