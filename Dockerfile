@@ -14,12 +14,13 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
         build-base \
         abuild \
         binutils \
-      	libcrypto1.0 \
+        pax-utils \
         bash && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    CFLAGS=-Wall make && \
+    CFLAGS="-Wall -Wl,-rpath=/usr/lib" make && \
     cp peervpn /sbin/peervpn && \
+    scanelf -n /sbin/peervpn && \
     chmod 755 /sbin/peervpn &&  \
     cd / && \
     rm -rf /tmp/peervpn.git && \
