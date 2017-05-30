@@ -7,6 +7,8 @@ RUN apk upgrade --update && \
     apk add --no-cache --virtual /tmp/.build-deps \
         libressl \
         libressl-dev \
+        zlib \
+        zlib-dev \
         git \
         gcc \
         make \
