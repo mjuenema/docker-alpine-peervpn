@@ -67,7 +67,7 @@ Markus Juenemann <markus@juenemann.net>
 
 ## Changelog
 
-### '0.2'
+### `0.2`
 
 * Fixed [Issue 4](https://github.com/mjuenema/docker-alpine-peervpn/issues/4). Thanks
   to *jazzdd86* for reporting it.
