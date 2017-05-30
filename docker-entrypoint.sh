@@ -147,7 +147,7 @@ enableipv4 ${ENABLEIPV4:-yes}
 ##               Defaults to "yes".
 ## Example:      enableipv6 yes
 
-enableipv6 ${ENABLEIPV6:-yes}
+enableipv6 ${ENABLEIPV6:-no}
 
 
 
@@ -243,5 +243,10 @@ enablerelay ${ENABLERELAY:-no}
 EOF
 fi
 chmod 0600 /etc/peervpn.conf
+
+# This must be done from inside the running container.
+# (https://github.com/mjuenema/docker-alpine-peervpn/issues/3)
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
 
 /sbin/peervpn /etc/peervpn.conf > /var/log/peervpn.log 2>&1
