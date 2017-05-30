@@ -16,7 +16,7 @@ env:
     - ALPINE_VERSION=edge
 
 script:
-  - sed "s/alpine/alpine:${ALPINE_VERSION}/g' Dockerfile
+  - sed "s/alpine/alpine:${ALPINE_VERSION}/g" Dockerfile
   - echo "VOLUME /var/log" >> Dockerfile
   - docker build -t alpine-peervpn .
   - mkdir /tmp/log
