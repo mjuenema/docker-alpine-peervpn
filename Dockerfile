@@ -20,12 +20,12 @@ RUN apk upgrade --update && \
         libssl1.0 \
         bash && \
     rm -rfv /var/cache/apk/* && \
-    /sbin/ldconfig -v /lib /usr/lib && \
     /bin/ls -l  /lib/libcrypto* /usr/lib/libcrypto* || echo xyz && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    CFLAGS="-Wall" make && \
+    CFLAGS=-Wall LIBS=-lssl make && \
     cp peervpn /sbin/peervpn && \
+    install -m 755 peervpn /sbin/peervpn && \
     scanelf -n /sbin/peervpn && \
     chmod 755 /sbin/peervpn &&  \
     cd / && \
