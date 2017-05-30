@@ -38,12 +38,12 @@ The example below will run a VPN between two containers. Both containers must
 configure different UDP ports (7001 and 7002) as they are on the same host. 
 In the example below the IP address of the host running Docker is 10.0.2.15.
 
-    docker run --name=vpn1 -p 7001:7001/udp --privileged \
+    docker run --name=vpn1 -p 7001:7001/udp --cap-add=NET_ADMIN \
         -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7001 \
         -e INITPEERS='10.0.2.15 7002' -e IFCONFIG4='172.16.1.1/24' -d \
         mjuenema/alpine-peervpn
     
-    docker run --name=vpn2 -p 7002:7002/udp --privileged \
+    docker run --name=vpn2 -p 7002:7002/udp --cap-add=NET_ADMIN \
         -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7002 \
         -e INITPEERS='10.0.2.15 7001' -e IFCONFIG4='172.16.1.2/24' -d \
         mjuenema/alpine-peervpn
@@ -67,11 +67,14 @@ Markus Juenemann <markus@juenemann.net>
 
 ## Changelog
 
-### '0.2'
+### `0.2`
 
 * Fixed [Issue 4](https://github.com/mjuenema/docker-alpine-peervpn/issues/4). Thanks
-  to *jazzdd86* for reporting it.
+  to *jazzdd86* for reporting this.
 * Added testing with Travis-CI against multiple Alpine Linux releases.
+* Replaced `--privileged` with `--cap-add=NET_ADMIN` in example and tests.
+  [Issue 3](https://github.com/mjuenema/docker-alpine-peervpn/issues/3) and
+  [Issue 2](https://github.com/mjuenema/docker-alpine-peervpn/issues/2).
 
 ### `0.1`
 
