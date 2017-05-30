@@ -18,10 +18,9 @@ env:
 script:
   - sed "s/alpine/alpine:${ALPINE_VERSION}/g" Dockerfile
   - echo "VOLUME /var/log" >> Dockerfile
-  - echo "RUN /bin/ls -l /usr/lib/libcrypto*" >> Dockerfile
   - docker build -t alpine-peervpn .
   - mkdir /tmp/log
-  - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --privileged alpine-peervpn
+  - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --cap-add CAP_NET_ADMIN alpine-peervpn
   - sleep 5
   - cat /tmp/log/peervpn.log
   - test $(grep -c Error /tmp/log/peervpn.log) -eq 0    # No Error messages in log file
