@@ -14,6 +14,7 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
         build-base \
         abuild \
         binutils \
+      	libcrypto1.0 \
         bash && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
