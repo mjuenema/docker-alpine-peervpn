@@ -27,9 +27,7 @@ RUN apk upgrade --update && \
     install -m 755 peervpn /sbin/peervpn && \
     cd / && \
     rm -rf /tmp/peervpn.git && \
-    apk del /tmp/.build-deps && \
-    mkdir -p /dev/net && \
-    mknod /dev/net/tun c 10 200
+    apk del /tmp/.build-deps
 
 COPY docker-entrypoint.sh /
 
