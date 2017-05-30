@@ -17,7 +17,7 @@ RUN apk upgrade --update && \
         binutils \
         pax-utils \
         bash && \
-    /bin/ls -l  /lib/crypto* /usr/lib/crypto* && \
+    /bin/ls -l  /lib/libcrypto* /usr/lib/libcrypto* || echo xyz && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
     CFLAGS="-Wall" make && \
