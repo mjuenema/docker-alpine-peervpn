@@ -5,8 +5,8 @@ MAINTAINER Markus Juenemann <markus@juenemann.net>
 
 RUN apk upgrade --update && \
     apk add --no-cache --virtual /tmp/.build-deps \
-        librssl \
-        librssl-dev \
+        libressl \
+        libressl-dev \
         git \
         gcc \
         make \
