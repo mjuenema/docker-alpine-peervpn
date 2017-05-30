@@ -20,7 +20,7 @@ RUN apk upgrade --update && \
     /bin/ls -l  /lib/crypto* /usr/lib/crypto* && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    CFLAGS="-Wall -static" make && \
+    CFLAGS="-Wall" make && \
     cp peervpn /sbin/peervpn && \
     scanelf -n /sbin/peervpn && \
     chmod 755 /sbin/peervpn &&  \
