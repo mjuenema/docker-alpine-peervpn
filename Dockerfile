@@ -3,14 +3,15 @@ FROM alpine
 
 MAINTAINER Markus Juenemann <markus@juenemann.net>
 
-RUN apk add --no-cache --virtual /tmp/.build-deps \
+RUN apk upgrade --update && \
+    apk add --no-cache --virtual /tmp/.build-deps \
         openssl \
         openssl-dev \
         git \
         gcc \
         make \
         linux-headers \
-        libc-dev \
+        musl-dev \
         build-base \
         abuild \
         binutils \
@@ -31,4 +32,3 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-    #bash -c make && \
