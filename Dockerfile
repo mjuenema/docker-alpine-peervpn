@@ -12,6 +12,7 @@ RUN apk upgrade --update && \
         make \
         linux-headers \
         musl-dev \
+        musl-utils \
         build-base \
         abuild \
         binutils \
@@ -19,7 +20,7 @@ RUN apk upgrade --update && \
         libssl1.0 \
         bash && \
     rm -rfv /var/cache/apk/* && \
-    /usr/glibc/usr/bin/ldconfig -v /lib /usr/lib && \
+    /sbin/ldconfig -v /lib /usr/lib && \
     /bin/ls -l  /lib/libcrypto* /usr/lib/libcrypto* || echo xyz && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
