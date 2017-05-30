@@ -6,12 +6,9 @@ services:
   - docker
 
 script:
+  - echo "VOLUME /var/log" >> Dockerfile
   - docker build -t alpine-peervpn .
-  - docker run -d --name=vpn1 -p 7001:7001/udp --privileged alpine-peervpn
-
-
-    #    -e NETWORKNAME=mynet -e PSK=mykey -e PORT=7001 \
-    #-e INITPEERS='10.0.2.15 7002' -e IFCONFIG4='172.16.1.1/24' -d \
-    #mjuenema/alpine-peervpn
-
-
+  - mkdir /tmp/log
+  - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --privileged alpine-peervpn
+  - sleep 5
+  - cat /tmp/logs/peervpn.log
