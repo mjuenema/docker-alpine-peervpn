@@ -25,3 +25,4 @@ script:
   - sleep 5
   - cat /tmp/log/peervpn.log
   - test $(grep -c Error /tmp/log/peervpn.log) -eq 0    # No Error messages in log file
+  - grep 'entering main loop' /tmp/log/peervpn.log
