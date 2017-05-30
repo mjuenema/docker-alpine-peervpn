@@ -16,6 +16,7 @@ RUN apk upgrade --update && \
         abuild \
         binutils \
         pax-utils \
+        libssl1.0 \
         bash && \
     /bin/ls -l  /lib/libcrypto* /usr/lib/libcrypto* || echo xyz && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
