@@ -11,4 +11,4 @@ script:
   - mkdir /tmp/log
   - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --privileged alpine-peervpn
   - sleep 5
-  - cat /tmp/logs/peervpn.log
+  - cat /tmp/log/peervpn.log
