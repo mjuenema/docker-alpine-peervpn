@@ -3,23 +3,28 @@ FROM alpine
 
 MAINTAINER Markus Juenemann <markus@juenemann.net>
 
-RUN apk add --no-cache --virtual /tmp/.build-deps \
-        openssl \
-        openssl-dev \
+RUN apk upgrade --update && \
+    apk add --no-cache --virtual /tmp/.build-deps \
+        libressl \
+        libressl-dev \
+        zlib \
+        zlib-dev \
         git \
         gcc \
         make \
         linux-headers \
-        libc-dev \
+        musl-dev \
+        musl-utils \
         build-base \
         abuild \
         binutils \
         bash && \
+    rm -rfv /var/cache/apk/* && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    bash -c make && \
+    CFLAGS=-Wall make && \
     cp peervpn /sbin/peervpn && \
-    chmod 755 /sbin/peervpn &&  \
+    install -m 755 peervpn /sbin/peervpn && \
     cd / && \
     rm -rf /tmp/peervpn.git && \
     apk del /tmp/.build-deps && \
