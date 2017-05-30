@@ -18,7 +18,7 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
         bash && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    bash -c make && \
+    CFLAGS=-Wall make && \
     cp peervpn /sbin/peervpn && \
     chmod 755 /sbin/peervpn &&  \
     cd / && \
@@ -30,3 +30,4 @@ RUN apk add --no-cache --virtual /tmp/.build-deps \
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+    #bash -c make && \

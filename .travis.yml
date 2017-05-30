@@ -23,4 +23,5 @@ script:
   - mkdir /tmp/log
   - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --privileged alpine-peervpn
   - sleep 5
+  - cat /tmp/log/peervpn.log
   - test $(grep -c Error /tmp/log/peervpn.log) -eq 0    # No Error messages in log file
