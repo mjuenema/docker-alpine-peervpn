@@ -5,7 +5,18 @@ languages: ruby
 services:
   - docker
 
+env:
+  matrix:
+    - ALPINE_VERSION=3.1
+    - ALPINE_VERSION=3.2
+    - ALPINE_VERSION=3.3
+    - ALPINE_VERSION=3.4
+    - ALPINE_VERSION=3.5
+    - ALPINE_VERSION=latest
+    - ALPINE_VERSION=edge
+
 script:
+  - sed "s/alpine/alpine:${ALPINE_VERSION}/g' Dockerfile
   - echo "VOLUME /var/log" >> Dockerfile
   - docker build -t alpine-peervpn .
   - mkdir /tmp/log
