@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Create /etc/peervpn.conf if it does not exist.
 #
 if [ ! -f /etc/peervpn.conf ]; then
@@ -61,7 +63,7 @@ enabletunneling ${ENABLETUNNELING:-yes}
 ## Description:  Specifies the name of the TAP device that should be
 ##               used for ethernet tunneling.
 ##               Note: On some operating systems (e.g. FreeBSD), TAP
-##               device names must start with the string "tap".              
+##               device names must start with the string "tap".
 ## Example:      interface tap0
 ##               interface peervpn0
 
@@ -249,4 +251,4 @@ chmod 0600 /etc/peervpn.conf
 mkdir -p /dev/net
 mknod /dev/net/tun c 10 200
 
-/sbin/peervpn /etc/peervpn.conf > /var/log/peervpn.log 2>&1
+exec /sbin/peervpn /etc/peervpn.conf
