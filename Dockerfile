@@ -22,7 +22,7 @@ RUN apk upgrade --update && \
     rm -rfv /var/cache/apk/* && \
     git clone https://github.com/peervpn/peervpn.git /tmp/peervpn.git && \
     cd /tmp/peervpn.git && \
-    CFLAGS=-Wall make && \
+    CFLAGS=-Wall make -j$(getconf _NPROCESSORS_ONLN) && \
     cp peervpn /sbin/peervpn && \
     install -m 755 peervpn /sbin/peervpn && \
     cd / && \
