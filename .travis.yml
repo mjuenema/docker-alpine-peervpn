@@ -12,6 +12,7 @@ env:
     - ALPINE_VERSION=3.3
     - ALPINE_VERSION=3.4
     - ALPINE_VERSION=3.5
+    - ALPINE_VERSION=3.6
     - ALPINE_VERSION=latest
     - ALPINE_VERSION=edge
 
