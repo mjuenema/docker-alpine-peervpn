@@ -12,6 +12,7 @@ env:
     - ALPINE_VERSION=3.3
     - ALPINE_VERSION=3.4
     - ALPINE_VERSION=3.5
+    - ALPINE_VERSION=3.6
     - ALPINE_VERSION=latest
     - ALPINE_VERSION=edge
 
@@ -20,8 +21,9 @@ script:
   - echo "VOLUME /var/log" >> Dockerfile
   - docker build -t alpine-peervpn .
   - mkdir /tmp/log
-  - docker run -v /tmp/log:/var/log -d --name=test -p 7000:7000/udp --cap-add=NET_ADMIN alpine-peervpn
+  - docker run -d --name=test -p 7000:7000/udp --cap-add=NET_ADMIN alpine-peervpn
   - sleep 5
+  - docker logs test > /tmp/log/peervpn.log 2>&1
   - cat /tmp/log/peervpn.log
   - test $(grep -c Error /tmp/log/peervpn.log) -eq 0    # No Error messages in log file
   - grep 'entering main loop' /tmp/log/peervpn.log

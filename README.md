@@ -1,5 +1,4 @@
-[![Travis master branch](https://img.shields.io/travis/mjuenema/docker-alpine-peervpn/master.svg?style=flat-square)](https://travis-ci.org/mjuenema/docker-alpine-peervpn/branches)
-[![Travis develop branch](https://img.shields.io/travis/mjuenema/docker-alpine-peervpn/develop.svg?style=flat-square)](https://travis-ci.org/mjuenema/docker-alpine-peervpn/branches)
+[![Travis-CI](https://img.shields.io/travis/mjuenema/docker-alpine-peervpn.svg?style=flat-square)](https://travis-ci.org/mjuenema/docker-alpine-peervpn/branches)
 [![GitHub release](https://img.shields.io/github/release/mjuenema/docker-alpine-peervpn.svg?style=flat-square)](https://github.com/mjuenema/docker-alpine-peervpn)
 
 # Docker image running PeerVPN
@@ -66,6 +65,10 @@ ENTRYPOINT ['/sbin/peervpn', '/etc/peervpn.conf']
 Markus Juenemann <markus@juenemann.net>
 
 ## Changelog
+
+### `0.3`
+
+* Merged [changes by *ThomasLeister*](https://github.com/mjuenema/docker-alpine-peervpn/pull/6).
 
 ### `0.2`
 
